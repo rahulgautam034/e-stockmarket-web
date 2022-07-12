@@ -1,0 +1,91 @@
+.card_main {
+  display: flex;
+  justify-content: center;
+}
+
+.block {
+  height: auto;
+  width: 40rem;
+  margin: 3em;
+  background-color: #fff;
+}
+
+.login_control label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.login_control input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 31rem;
+  font-size: 1.2rem;
+}
+
+.login_control select {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 31rem;
+  font-size: 1.2rem;
+}
+
+img {
+  height: 8rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15rem;
+}
+
+.button {
+  max-width: 5rem;
+  margin: 10rem;
+}
+
+
+
+
+
+
+
+
+
+.card {
+  display: flex;
+  margin-top: 5rem;
+  border-radius: 1rem;
+  background-color: snow;
+  justify-content: center;
+  align-self: center;
+}
+
+
+.main {
+  height: 30rem;
+  width: 70rem;
+  margin: 3em ;
+  background-color: #fff;
+}
+
+.input_area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding:1rem;
+}
+
+label {
+  color:grey;
+}
+
+
+.mx-auto button {
+  width:20rem
+}
+
+

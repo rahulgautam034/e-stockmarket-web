@@ -1,0 +1,25 @@
+.side-card-internal {
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    margin:10px
+}
+
+.form-control {
+    border-radius: 10px;
+    width: 50%;
+}
+
+.card_main {
+    position: fixed;
+    right: 0;
+}
+
+.cs_main_card {
+    height: 100vh !important;
+}
+
+.cs-card {
+    margin: 0;
+    background-color: #fff;
+}

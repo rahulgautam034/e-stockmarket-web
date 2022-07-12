@@ -1,0 +1,41 @@
+.side-card-internal {
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    margin:10px
+}
+
+.form-control {
+    border-radius: 10px;
+    width: 50%;
+}
+
+.card_main {
+    position: fixed;
+    right: 0;
+}
+
+.cs_main_card {
+    height: 100vh !important;
+    background: snow;
+}
+
+.cs-card {
+    margin: 0;
+    background-color: #fff;
+    width: 20vw;
+    border-radius: 1rem;
+}
+
+.cs-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cs-add-stock-btn {
+    margin-top: 1rem;
+}
+
+.cs_card_content {
+    height: 100%;
+}
