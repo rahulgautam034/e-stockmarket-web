@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "../../../common/Loader";
-import { createHttpHeader, url } from "../../services/HttpService";
+import { createHttpHeader, getTokenExpiry, url } from "../../services/HttpService";
 import "./Dashboard.css";
 import { DELETE_COMPANY_API, GET_ALL_COMPANIES_API } from "../../services/ApiService";
 import { useNavigate } from "react-router";

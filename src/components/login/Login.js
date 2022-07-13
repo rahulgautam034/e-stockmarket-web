@@ -64,7 +64,7 @@ function Login() {
       .then((res) => {
         console.log("res", res.data);
         if (res.status == 200 && res.data) {
-          setToken(res.data.token);
+          setToken(res.data);
           getUser({
             userName: userName,
             role: userRole,

@@ -1,20 +1,26 @@
 export const url = "http://localhost:8082/";
 
 export const setToken = (token) => {
-  localStorage.setItem("token", token);
+  const obj = JSON.stringify(token)
+  localStorage.setItem("token", obj);
   localStorage.setItem("isUserAuthenticated", true);
 };
 
 export const getToken = () => {
-  return localStorage.getItem("token");
+  const token = JSON.parse(localStorage.getItem("token"))
+  return JSON.parse(localStorage.getItem("token")).token;
 };
+
+export const getTokenExpiry =()=> {
+  return JSON.parse(localStorage.getItem("token")).expiration;
+}
 
 
 
 export const createHttpHeader = () => {
   const config = {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`
+      Authorization: `Bearer ${getToken()}`
     },
   };
   return config;
