@@ -12,7 +12,8 @@ export const getToken = () => {
 };
 
 export const getTokenExpiry =()=> {
-  return JSON.parse(localStorage.getItem("token")).expiration;
+  const token = JSON.parse(localStorage.getItem("token"))
+  return token && token.expiration ? token.expiration : null;
 }
 
 
