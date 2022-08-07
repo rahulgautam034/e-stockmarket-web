@@ -1,44 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { GET_COMPANY_DETAIL_API } from "../../services/ApiService";
-import { createHttpHeader, url } from "../../services/HttpService";
-import { RECEIVED_COMPANY_ACTION } from "../../services/redux/company";
+import React, { useEffect, useState } from "react";
 import { getDate, getTime } from "../../utils/util";
 
 function CompanyDetailModal(props) {
-  const [loading, updateLoging] = useState(false);
-  const [company, updateObj] = useState({});
-  const [count, setCount] = useState(0);
-
-
-  const searchValue = props.searchValue;
-  useEffect(() => {
-    if (Object.keys(company).length == 0 && props.isModalOpen) {
-      fetchCompany();
-    }
-  },);
-
-  const fetchCompany = () => {
-    setCount(1);
-    updateLoging(true);
-    axios
-      .get(url + GET_COMPANY_DETAIL_API + searchValue, createHttpHeader())
-      .then((res) => {
-        console.log("res", res);
-        updateLoging(false);
-        if (res && res.status == 200 && res.data) {
-          updateObj(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log("errr", err);
-        updateLoging(false);
-      });
-  };
+  const company = props.company;
 
   const updateData = ()=> {
     props.onReturn("")
-    updateObj({})
   }
   return (
     <div
@@ -53,9 +20,10 @@ function CompanyDetailModal(props) {
           <div className="modal-header">
             <i style ={{color:"green"}}className={`bi bi-circle-fill status_circle`}></i>
             <h5 className="modal-title" id="exampleModalToggleLabel">
-              Name - {company?.companyName || ""}
+              Name - {props.company?.companyName || "wsdd"}
             </h5>
             <button
+              onClick={()=>updateData({})}
               type="button"
               className="btn-close"
               data-bs-dismiss="modal"

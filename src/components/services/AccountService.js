@@ -1,6 +1,6 @@
 import axios from "axios"
-import { adminNavBar, userNavBar } from "../navbar-items/navbar-items"
-import {  ADMIN_ACCOUNT, USER_ACCOUNT } from "./ApiService"
+import { adminNavBar } from "../navbar-items/navbar-items"
+import {  USER_ACCOUNT } from "./ApiService"
 import { createHttpHeader, url } from "./HttpService"
 
 export const getUser = (request) => {

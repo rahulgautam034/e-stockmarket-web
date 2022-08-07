@@ -4,11 +4,10 @@ import logo from "../assests/logo.png";
 import { getUserDetails } from "../components/services/AccountService";
 import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  RECEIVED_COMPANY_ACTION,
-  REQUEST_COMPANY_ACTION,
-} from "../components/services/redux/company";
 import CompanyDetailModal from "../components/admin/company-detail/CompanyDetailModal";
+import axios from "axios";
+import { createHttpHeader, url } from "../components/services/HttpService";
+import { GET_COMPANY_DETAIL_API } from "../components/services/ApiService";
 function NavBar() {
   
   const navigate = useNavigate();
@@ -17,6 +16,8 @@ function NavBar() {
   const [user, setUserDetails] = useState({});
   const [searchValue, updateSearch] = useState("");
   const [isModalOpen, updateModal] = useState(false);
+  const [company, updateObj] = useState({});
+  const [loading, updateLoging] = useState(false);
 
   const state = useSelector((state) => {
     return { ...state };
@@ -25,7 +26,6 @@ function NavBar() {
   const dispatch = useDispatch(null);
   
 
-  console.log(state);
   const navigateTo = (item) => {
     navigate(item.path);
   };
@@ -53,9 +53,31 @@ function NavBar() {
   const searchCompany = () => {
     if (searchValue.trim().length == 0)
       return alert("please enter company code ");
-    dispatch(RECEIVED_COMPANY_ACTION(searchValue));
-    updateModal(!isModalOpen)
+      fetchCompany()
+   
   };
+
+  const fetchCompany = () => {
+    updateLoging(true);
+    axios
+      .get(url + GET_COMPANY_DETAIL_API + searchValue, createHttpHeader())
+      .then((res) => {
+        console.log("res", res);
+        updateLoging(false);
+        if (res && res.status == 200 && res.data && !res.data.message) {
+          updateObj(res.data);
+          updateModal(true)
+        }else {
+          updateSearch("");
+          return alert(res.data.message);
+        }
+      })
+      .catch((err) => {
+        console.log("errr", err);
+        updateLoging(false);
+      });
+  };
+
 
   useEffect(() => {
     const newArr = JSON.parse(localStorage.getItem("navBarArr"));
@@ -80,8 +102,7 @@ function NavBar() {
       <CompanyDetailModal
         id="exampleModal"
         toggle="modal"
-        searchValue={searchValue}
-        isModalOpen = {isModalOpen}
+        company ={company}
         dispatch={dispatch}
         onReturn = {()=> updateStateObj()}
       />
@@ -123,7 +144,7 @@ function NavBar() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {arr &&
+            {arr && isUserLoggedIn == "true" &&
               arr.map((item, i) => (
                 <div key={i}>
                   <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -142,7 +163,7 @@ function NavBar() {
               ))}
           </div>
 
-          {isUserLoggedIn && (
+          {isUserLoggedIn =="true" && (
             <>
               <input
                 value={searchValue}
