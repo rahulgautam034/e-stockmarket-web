@@ -15,7 +15,7 @@ export default class AddCompany extends React.PureComponent {
     companyTurnover: 0,
     companyWebsite: "",
     companyCode: "",
-    stockPrice:0
+    stockPrice: 0,
   };
 
   clearValues() {
@@ -29,18 +29,24 @@ export default class AddCompany extends React.PureComponent {
       companyCode,
       companyTurnover,
       companyWebsite,
-      stockPrice
+      stockPrice,
     } = this.state;
-    if (
+    const re =
+      /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+
+    if (companyWebsite.trim().length > 0 && !re.test(companyWebsite)) {
+      return alert("website format is not correct");
+    } else if (
       companyName.trim().length == 0 ||
       companyCeo.trim().length == 0 ||
       companyCode.trim().length == 0 ||
       companyTurnover == 0 ||
       companyWebsite.trim().length == 0 ||
-      stockPrice == 0 
+      stockPrice == 0
     ) {
       return alert("Please fill all * fields");
     }
+    
     this.setState({ loading: true });
 
     const companyObj = {
@@ -60,12 +66,12 @@ export default class AddCompany extends React.PureComponent {
         if (res.data && res.data.id) {
           let stockObj = {
             companyCode,
-            stockPrice
-          }
-          this.addStock(stockObj)
+            stockPrice,
+          };
+          this.addStock(stockObj);
           this.clearValues();
-        }else {
-          alert(res.data.message)
+        } else {
+          alert(res.data.message);
         }
       })
       .catch((err) => {
@@ -84,17 +90,15 @@ export default class AddCompany extends React.PureComponent {
         if (res.data && res.data.id) {
           alert("Company added successfully.");
           this.clearValues();
-        }else {
-          alert(res.data.message)
+        } else {
+          alert(res.data.message);
         }
       })
       .catch((err) => {
         console.log("errrr", err);
         this.setState({ loading: false });
       });
-  }
-
-
+  };
 
   onFileChange = (e) => {
     const image = e.target.files[0];

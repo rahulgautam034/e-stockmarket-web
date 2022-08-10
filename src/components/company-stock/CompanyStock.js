@@ -194,6 +194,7 @@ function CompanyStock() {
                     <label class="card-title">Start Date</label>
                     <input
                       max={setMaxStartDate()}
+                      disabled ={stock && stock.length == 0}
                       value={startDate}
                       type="date"
                       className="form-control"
@@ -207,6 +208,7 @@ function CompanyStock() {
                       value={endDate}
                       min={setMinStartDate()}
                       max={setMaxStartDate()}
+                      disabled ={stock && stock.length == 0}
                       type="date"
                       className="form-control"
                       placeholder="Start Date"
@@ -216,6 +218,7 @@ function CompanyStock() {
                   <button
                     className="btn btn-outline-success"
                     type="submit"
+                    disabled ={stock.length ==0}
                     onClick={() => searchStock()}
                   >
                     Search
