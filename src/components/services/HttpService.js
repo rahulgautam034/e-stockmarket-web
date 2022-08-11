@@ -1,4 +1,4 @@
-export const url = "http://localhost:8082/";
+export const url = "http://localhost:8081/";
 
 export const setToken = (token) => {
   const obj = JSON.stringify(token)
@@ -21,7 +21,8 @@ export const getTokenExpiry =()=> {
 export const createHttpHeader = () => {
   const config = {
     headers: {
-      Authorization: `Bearer ${getToken()}`
+      Authorization: `Bearer ${getToken()}`,
+      "Access-Control-Allow-Origin": "*"
     },
   };
   return config;

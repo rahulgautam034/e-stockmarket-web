@@ -5,7 +5,7 @@ import { createHttpHeader, url } from "./HttpService"
 
 export const getUser = (request) => {
 
-    axios.get(url+USER_ACCOUNT +"/"+request.userName,createHttpHeader())
+    axios.get(url+USER_ACCOUNT +request.userName,createHttpHeader())
     .then(res=> {
         if(res && res.data) {
             localStorage.setItem("account",JSON.stringify(res.data))

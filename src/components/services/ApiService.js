@@ -9,7 +9,7 @@ export const USER_SIGNUP_API = `api/user/register`;
 
 export const ADMIN_ACCOUNT = `api/admin/user`;
 
-export const USER_ACCOUNT = `api/v1.0/market/user/user`;
+export const USER_ACCOUNT = `api/v1.0/market/user/`;
 
 
 export const ADD_OR_BLOCK_FLIGHT_API = `api/admin/v1.0/flight`
